@@ -4,13 +4,14 @@ define( function( require ) {
     var Phonegap = require( 'core/phonegap/utils' );
 
     var pushwoosh = {};
+    var pushNotification = null;
 
     pushwoosh.init = function() {
         if( !Phonegap.isLoaded() ) {
             return;
         }
 
-        var pushNotification = cordova.require( 'com.pushwoosh.plugins.pushwoosh.PushNotification' );
+        pushNotification = cordova.require( 'com.pushwoosh.plugins.pushwoosh.PushNotification' );
 
         //set push notifications handler
         document.addEventListener( 'push-notification', pushwoosh.handleNotif );
@@ -19,29 +20,36 @@ define( function( require ) {
         pushNotification.onDeviceReady( { projectid: "931420113985", pw_appid : "9CD6D-E5A2B" } );
 
         //register for pushes
-        pushNotification.registerDevice(
-            function( status ) {
-                var pushToken = status;
-                console.warn( 'push token: ' + pushToken );
-            },
-            function( status ) {
-                console.warn( JSON.stringify( ['failed to register ', status] ) );
-            }
-        );
+        pushNotification.registerDevice();
+
+        //reset badges on app start (iOS only)
+        resetBadges();
     };
 
     pushwoosh.handleNotif = function( event ) {
-        var title = event.notification.title;
-        var userData = event.notification.userdata;
+        var notification = event.notification,
+            title = notification.title || notification.aps.alert,
+            userData = notification.userdata || notification.u;
+
+        //clear the app badge (iOS only)
+        resetBadges();
 
         if( "undefined" !== typeof userData ) {
             if( "undefined" !== typeof userData.route ) {
-                // Don't need the protocol, userData.route contains something like "single/posts/1"
+                // Don't need the protocol, userData.route should contain something like "single/posts/1"
                 wpak_open_url = userData.route;
             }
         }
 
         alert( title );
+    };
+
+    var resetBadges = function() {
+        if( null === pushNotification || "undefined" === typeof pushNotification.setApplicationIconBadgeNumber ) {
+            return;
+        }
+
+        pushNotification.setApplicationIconBadgeNumber(0);
     };
 
     return pushwoosh;
