@@ -38,7 +38,7 @@ define( function( require ) {
         if( "undefined" !== typeof userData ) {
             if( "undefined" !== typeof userData.route ) {
                 // Don't need the protocol, userData.route should contain something like "single/posts/1"
-                wpak_open_url = userData.route;
+                window.wpak_open_url = userData.route;
             }
         }
 
