@@ -10,6 +10,7 @@ if ( !class_exists( 'WpAppKitPushWhoosh' ) ) {
     class WpAppKitPushWhoosh {
 
         const slug = 'wpak-addon-pushwoosh';
+        const i18n_domain = 'wpak-addon-pushwoosh';
 
         public static function hooks() {
             add_filter( 'wpak_addons', array( __CLASS__, 'wpak_addons' ) );
@@ -22,6 +23,8 @@ if ( !class_exists( 'WpAppKitPushWhoosh' ) ) {
 
             $addon->add_js( 'js/wpak-pushwoosh.js', 'module' );
             $addon->add_js( 'js/wpak-pushwoosh-app.js', 'init', 'before' );
+
+            $addon->require_php( dirname(__FILE__) .'/wpak-pushwoosh-bo-settings.php' );
 
             $addons[] = $addon;
 
