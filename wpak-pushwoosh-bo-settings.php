@@ -1,6 +1,9 @@
 <?php
 
 if ( !class_exists( 'WpakPushWooshAdmin' ) ) {
+    /**
+     * PushWoosh backoffice forms manager class.
+     */
     class WpakPushWooshAdmin {
         /**
          * Main entry point.
