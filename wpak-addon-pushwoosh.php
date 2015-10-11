@@ -22,7 +22,7 @@ if ( !class_exists( 'WpAppKitPushWhoosh' ) ) {
          */
         public static function hooks() {
             add_filter( 'wpak_addons', array( __CLASS__, 'wpak_addons' ) );
-            add_filter( 'wpak_default_phonegap_build_plugins', array( __CLASS__, 'wpak_default_phonegap_build_plugins' ), 10, 2 );
+            add_filter( 'wpak_default_phonegap_build_plugins', array( __CLASS__, 'wpak_default_phonegap_build_plugins' ), 10, 3 );
         }
 
         /**
@@ -55,11 +55,12 @@ if ( !class_exists( 'WpAppKitPushWhoosh' ) ) {
          * Filter default plugins included into the PhoneGap Build config.xml file.
          *
          * @param array             $default_plugins            The default plugins.
+         * @param string            $export_type                Export type : 'phonegap-build' or 'phonegap-cli'
          * @param int               $app_id                     The App ID.
          *
          * @return array            $default_plugins            Plugins with PushWoosh one in addition.
          */
-        public static function wpak_default_phonegap_build_plugins( $default_plugins, $app_id ) {
+        public static function wpak_default_phonegap_build_plugins( $default_plugins, $export_type, $app_id ) {
             if( WpakAddons::addon_activated_for_app( self::slug, $app_id ) ) {
                 $default_plugins['pushwoosh-cordova-plugin'] = array( 'version' => '3.5.9', 'source' => 'npm' );
             }
