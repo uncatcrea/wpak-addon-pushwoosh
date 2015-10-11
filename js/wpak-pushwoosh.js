@@ -8,7 +8,7 @@ define( function( require ) {
     var pushNotification = null;
 
     pushwoosh.init = function() {
-        if( !Phonegap.isLoaded() || "undefined" == typeof Config.pushwoosh ) {
+        if( !Phonegap.isLoaded() || "undefined" == typeof Config.options.pushwoosh ) {
             return;
         }
 
@@ -18,7 +18,7 @@ define( function( require ) {
         document.addEventListener( 'push-notification', pushwoosh.handleNotif );
 
         //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
-        pushNotification.onDeviceReady( { projectid: Config.pushwoosh.googleid, pw_appid : Config.pushwoosh.pwid } );
+        pushNotification.onDeviceReady( { projectid: Config.options.pushwoosh.googleid, pw_appid : Config.options.pushwoosh.pwid } );
 
         //register for pushes
         pushNotification.registerDevice();
