@@ -23,6 +23,7 @@ if ( !class_exists( 'WpAppKitPushWhoosh' ) ) {
         public static function hooks() {
             add_filter( 'wpak_addons', array( __CLASS__, 'wpak_addons' ) );
             add_filter( 'wpak_default_phonegap_build_plugins', array( __CLASS__, 'wpak_default_phonegap_build_plugins' ), 10, 3 );
+            add_action( 'plugins_loaded', array( __CLASS__, 'plugins_loaded' ) );
         }
 
         /**
@@ -66,6 +67,15 @@ if ( !class_exists( 'WpAppKitPushWhoosh' ) ) {
             }
 
             return $default_plugins;
+        }
+
+        /**
+         * Attached to 'plugins_loaded' hook.
+         *
+         * Register the addon textdomain for string translations.
+         */
+        public static function plugins_loaded() {
+            load_plugin_textdomain( self::i18n_domain, false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
         }
 
     }
