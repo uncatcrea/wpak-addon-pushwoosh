@@ -45,12 +45,12 @@ if ( !class_exists( 'WpakPushWooshAdmin' ) ) {
             <a href="#" class="hide-if-no-js wpak_help"><?php _e( 'Help me', WpAppKit::i18n_domain ); ?></a>
             <div class="wpak_settings field-group">
                 <div class="field-group">
-                    <label for="wpak_pushwoosh_pwid"><?php _e( 'PushWoosh ID:', WpAppKitPushWhoosh::i18n_domain ) ?></label>
+                    <label for="wpak_pushwoosh_pwid"><?php _e( 'PushWoosh ID', WpAppKitPushWhoosh::i18n_domain ) ?></label>
                     <input id="wpak_pushwoosh_pwid" type="text" name="wpak_app_options[pushwoosh][pwid]" value="<?php echo $options['pushwoosh']['pwid'] ?>" />
                     <span class="description"><?php _e( '', WpAppKitPushWhoosh::i18n_domain ) ?></span>
                 </div>
                 <div class="field-group">
-                    <label for="wpak_pushwoosh_googleid"><?php _e( 'Google Project ID:', WpAppKitPushWhoosh::i18n_domain ) ?></label>
+                    <label for="wpak_pushwoosh_googleid"><?php _e( 'Google Project ID', WpAppKitPushWhoosh::i18n_domain ) ?></label>
                     <input id="wpak_pushwoosh_googleid" type="text" name="wpak_app_options[pushwoosh][googleid]" value="<?php echo $options['pushwoosh']['googleid'] ?>" />
                     <span class="description"><?php _e( '', WpAppKitPushWhoosh::i18n_domain ) ?></span>
                 </div>
