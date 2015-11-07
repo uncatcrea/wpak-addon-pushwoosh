@@ -42,7 +42,7 @@ if ( !class_exists( 'WpakPushWooshAdmin' ) ) {
         public static function inner_config_box( $post, $current_box ) {
             $options = WpakOptions::get_app_options( $post->ID );
             ?>
-            <a href="#" class="hide-if-no-js wpak_help"><?php _e( 'Help me', WpAppKit::i18n_domain ); ?></a>
+            <a href="#" class="hide-if-no-js wpak_help"><?php _e( 'Help me', WpAppKitPushWhoosh::i18n_domain ); ?></a>
             <div class="wpak_settings field-group">
                 <div class="field-group">
                     <label for="wpak_pushwoosh_pwid"><?php _e( 'PushWoosh ID', WpAppKitPushWhoosh::i18n_domain ) ?></label>
