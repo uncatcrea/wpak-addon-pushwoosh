@@ -47,7 +47,7 @@ _Sources for certificates generation with Windows:_
 * _http://help.adobe.com/en_US/as3/iphone/WS144092a96ffef7cc-371badff126abc17b1f-8000.html_
 * _http://help.adobe.com/en_US/as3/iphone/WS144092a96ffef7cc-371badff126abc17b1f-7fff.html_
 
-## Deep links
+## DEEP LINKS
 Since WP-AppKit natively supports Deep Linking (as of v0.5), this addon just adds the ability to use it from notifications.
 
 Deep Linking is a feature letting you open a specific screen of your app thanks to a single external link. This is especially useful when you are sending push notifications to your users and you want them to see a specific landing page when clicking on the notification.
