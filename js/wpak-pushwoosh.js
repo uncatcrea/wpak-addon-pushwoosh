@@ -13,7 +13,7 @@ define( function( require ) {
             return;
         }
 
-        pushNotification = cordova.require( 'com.pushwoosh.plugins.pushwoosh.PushNotification' );
+        pushNotification = cordova.require( 'pushwoosh-cordova-plugin.PushNotification' );
 
         //set push notifications handler
         document.addEventListener( 'push-notification', pushwoosh.handleNotif );
