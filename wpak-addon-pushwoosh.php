@@ -63,7 +63,7 @@ if ( !class_exists( 'WpAppKitPushWhoosh' ) ) {
          */
         public static function wpak_default_phonegap_build_plugins( $default_plugins, $export_type, $app_id ) {
             if( WpakAddons::addon_activated_for_app( self::slug, $app_id ) ) {
-                $default_plugins['pushwoosh-cordova-plugin'] = array( 'spec' => '4.2.2', 'source' => 'npm' );
+                $default_plugins['pushwoosh-cordova-plugin'] = array( 'spec' => '5.0.2', 'source' => 'npm' );
             }
 
             return $default_plugins;
