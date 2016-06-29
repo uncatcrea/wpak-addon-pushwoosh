@@ -63,7 +63,21 @@ if ( !class_exists( 'WpAppKitPushWhoosh' ) ) {
          */
         public static function wpak_default_phonegap_build_plugins( $default_plugins, $export_type, $app_id ) {
             if( WpakAddons::addon_activated_for_app( self::slug, $app_id ) ) {
-                $default_plugins['pushwoosh-cordova-plugin'] = array( 'spec' => '5.0.2', 'source' => 'npm' );
+                switch( $export_type ) {
+                    //
+                    // Due to PhoneGap Build being really long to update their Google Play libraries
+                    // There is a specific version of this plugin for PhoneGap Build
+                    // The cordova version is crashing if we try to include it with PhoneGap Build
+                    // See: https://github.com/Pushwoosh/pushwoosh-phonegap-plugin/issues/189
+                    //
+
+                    case 'phonegap-build':
+                        $default_plugins['pushwoosh-pgb-plugin'] = array( 'spec' => '5.1.2-1', 'source' => 'npm' );
+                        break;
+                    default:
+                        $default_plugins['pushwoosh-cordova-plugin'] = array( 'spec' => '5.1.2', 'source' => 'npm' );
+                        break;
+                }
             }
 
             return $default_plugins;
