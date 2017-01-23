@@ -22,6 +22,21 @@ You need to register your app (create a _project_) in your Google Developers acc
 
 What you’ll need regarding this addon is to write down your Google Application **Project Number** and put it into the _Google Project ID_ field from WP-AppKit screen.
 
+**[EDIT] More details on Android**
+
+## Firebase
+* Use Firebase (FCM) instead GCM
+* Access you app's project
+* Click the parameter gear icon (right to the overview item in the left menu)
+* Cloud Messaging tab
+* Paste Firebase Sender ID to the Google Project Number in WP-AppKit addon metabox
+
+## PushWoosh
+* Copy Firebase's Server Key (from Cloud Messaging tab)
+* Paste Firebase's Server Key to API Key field in the Android notifications PushWoosh panel
+* Paste Firebase Sender ID to the GCM Sender ID in the Android notifications PushWoosh panel
+* Choose _Cordova_ as framework
+
 ### iOS
 You need to register your app in your Apple Developer account. The global configuration between Apple and PushWoosh is detailed here (Mac OSX only): http://docs.pushwoosh.com/docs/apns-configuration
 
@@ -46,6 +61,8 @@ One thing you need to understand here is that these certificates are only useful
 _Sources for certificates generation with Windows:_
 * _http://help.adobe.com/en_US/as3/iphone/WS144092a96ffef7cc-371badff126abc17b1f-8000.html_
 * _http://help.adobe.com/en_US/as3/iphone/WS144092a96ffef7cc-371badff126abc17b1f-7fff.html_
+
+[EDIT] Useful link (in French): https://blog.didierstevens.com/2015/03/30/howto-make-your-own-cert-with-openssl-on-windows/ 
 
 ## DEEP LINKS
 Since WP-AppKit natively supports Deep Linking (as of v0.5), this addon just adds the ability to use it from notifications.
