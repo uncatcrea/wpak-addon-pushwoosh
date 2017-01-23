@@ -29,19 +29,41 @@ What you’ll need regarding this addon is to write down your Google Application
 * Access you app's project
 * Click the parameter gear icon (right to the overview item in the left menu)
 * Cloud Messaging tab
-* Paste Firebase Sender ID in the Google Project Number field in WP-AppKit addon metabox
+* Paste Firebase Sender ID in the **Google Project Number field in WP-AppKit** addon metabox
 
 ## PushWoosh
 * Copy Firebase's Server Key (from Cloud Messaging tab)
 * Paste Firebase's Server Key to API Key field in the Android notifications PushWoosh panel
 * Paste Firebase Sender ID to the GCM Sender ID in the Android notifications PushWoosh panel
 * Choose _Cordova_ as framework
-* Paste PushWoosh Application code in the PushWoosh ID field in WP-AppKit addon metabox
+* Paste PushWoosh Application code in the **PushWoosh ID field in WP-AppKit** addon metabox
 
 ### iOS
 You need to register your app in your Apple Developer account. The global configuration between Apple and PushWoosh is detailed here (Mac OSX only): http://docs.pushwoosh.com/docs/apns-configuration
 
 If you want to create the needed certificates from Windows, you’ll find some help below. You’ll first need the openssl command line, for example by downloading OpenSSL binaries (https://www.openssl.org/community/binaries.html), or any tool that will bring you UNIX CLI commands (Cygwin, Git bash for Windows, etc.).
+
+**[EDIT] More details on iOS**
+
+## Apple Developer Console
+* Access Certificates, IDs & Profiles item in the left menu
+* **Everything has to be done with production certificates**
+* Create an iOS Distribution Certificate (using your signing request and choosing App Store/Ad Hoc)
+* Download the .cer file
+* Create an App ID
+* Be sure to give the same bundle ID you use to compile with PhoneGap Build (you'll find it in the config.xml)
+* Check Push Notifications
+* Add a Production SSL Certificate for push notifications (using the same signing request you've used for the production certificate above)
+* Register as many as devices you need (collecting UDID with iTunes)
+* Create a distribution provisioning file using your App ID, your production certificate, selecting the devices -> be sure to select Ad Hoc
+
+## PhoneGap Build
+* Convert your .cer certificate (see above) into a .p12 file
+* Edit Account
+* Signing Keys tab
+* 
+
+## PushWoosh
 
 #### Generate a certificate request
 Execute these commands:
