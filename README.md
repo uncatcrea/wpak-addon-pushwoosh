@@ -29,13 +29,14 @@ What you’ll need regarding this addon is to write down your Google Application
 * Access you app's project
 * Click the parameter gear icon (right to the overview item in the left menu)
 * Cloud Messaging tab
-* Paste Firebase Sender ID to the Google Project Number in WP-AppKit addon metabox
+* Paste Firebase Sender ID in the Google Project Number field in WP-AppKit addon metabox
 
 ## PushWoosh
 * Copy Firebase's Server Key (from Cloud Messaging tab)
 * Paste Firebase's Server Key to API Key field in the Android notifications PushWoosh panel
 * Paste Firebase Sender ID to the GCM Sender ID in the Android notifications PushWoosh panel
 * Choose _Cordova_ as framework
+* Paste PushWoosh Application code in the PushWoosh ID field in WP-AppKit addon metabox
 
 ### iOS
 You need to register your app in your Apple Developer account. The global configuration between Apple and PushWoosh is detailed here (Mac OSX only): http://docs.pushwoosh.com/docs/apns-configuration
