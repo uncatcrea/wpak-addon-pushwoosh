@@ -18,20 +18,18 @@ Once you created your app both in PushWoosh and WP-AppKit, you need to put its *
 ![PushWoosh WP-AppKit addon metabox print screen](http://uncatcrea.github.io/wpak-addon-pushwoosh/addon_metabox.png)
 
 ### Android
-You need to register your app (create a _project_) in your Google Developers account. The global configuration between Google and PushWoosh is detailed here: http://docs.pushwoosh.com/docs/gcm-configuration
+You need to register your app (create a _project_) in your Google Developers account. The global configuration between Google and PushWoosh is detailed here: http://docs.pushwoosh.com/docs/fcm-configuration
 
-What you’ll need regarding this addon is to write down your Google Application **Project Number** and put it into the _Google Project ID_ field from WP-AppKit screen.
+What you’ll need regarding this addon is to write down your Google Application **Project Number** and put it into the _Sender ID_ field from WP-AppKit screen.
 
-**[EDIT] More details on Android**
-
-## Firebase
-* Use Firebase (FCM) instead GCM
+#### Firebase
+* Use Firebase (FCM) instead of GCM
 * Access you app's project
 * Click the parameter gear icon (right to the overview item in the left menu)
-* Cloud Messaging tab
-* Paste Firebase Sender ID in the **Google Project Number field in WP-AppKit** addon metabox
+* Open Cloud Messaging tab
+* Paste Firebase Sender ID in the **Sender ID field in WP-AppKit** addon metabox
 
-## PushWoosh
+#### PushWoosh
 * Copy Firebase's Server Key (from Cloud Messaging tab)
 * Paste Firebase's Server Key to API Key field in the Android notifications PushWoosh panel
 * Paste Firebase Sender ID to the GCM Sender ID in the Android notifications PushWoosh panel
@@ -43,9 +41,7 @@ You need to register your app in your Apple Developer account. The global config
 
 If you want to create the needed certificates from Windows, you’ll find some help below. You’ll first need the openssl command line, for example by downloading OpenSSL binaries (https://www.openssl.org/community/binaries.html), or any tool that will bring you UNIX CLI commands (Cygwin, Git bash for Windows, etc.).
 
-**[EDIT] More details on iOS**
-
-## Apple Developer Console
+#### Apple Developer Console
 * Access Certificates, IDs & Profiles item in the left menu
 * **Everything has to be done with production certificates**
 * Create an iOS Distribution Certificate (using your signing request and choosing App Store/Ad Hoc)
@@ -57,13 +53,13 @@ If you want to create the needed certificates from Windows, you’ll find some h
 * Register as many as devices you need (collecting UDID with iTunes)
 * Create a distribution provisioning file using your App ID, your production certificate, selecting the devices -> be sure to select Ad Hoc
 
-## PhoneGap Build
+#### PhoneGap Build
 * Convert your .cer certificate (see above) into a .p12 file
 * Edit Account
-* Signing Keys tab
+* Open Signing Keys tab
 * 
 
-## PushWoosh
+#### PushWoosh
 
 #### Generate a certificate request
 Execute these commands:
@@ -85,7 +81,7 @@ _Sources for certificates generation with Windows:_
 * _http://help.adobe.com/en_US/as3/iphone/WS144092a96ffef7cc-371badff126abc17b1f-8000.html_
 * _http://help.adobe.com/en_US/as3/iphone/WS144092a96ffef7cc-371badff126abc17b1f-7fff.html_
 
-[EDIT] Useful link (in French): https://blog.didierstevens.com/2015/03/30/howto-make-your-own-cert-with-openssl-on-windows/ 
+_Useful link (in French):_ https://blog.didierstevens.com/2015/03/30/howto-make-your-own-cert-with-openssl-on-windows/ 
 
 ## DEEP LINKS
 Since WP-AppKit natively supports Deep Linking (as of v0.5), this addon just adds the ability to use it from notifications.

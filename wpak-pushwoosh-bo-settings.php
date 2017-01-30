@@ -50,7 +50,7 @@ if ( !class_exists( 'WpakPushWooshAdmin' ) ) {
                     <span class="description"><?php // TODO: add a description here? _e( '', WpAppKitPushWhoosh::i18n_domain ) ?></span>
                 </div>
                 <div class="field-group">
-                    <label for="wpak_pushwoosh_googleid"><?php _e( 'Google Project ID', WpAppKitPushWhoosh::i18n_domain ) ?></label>
+                    <label for="wpak_pushwoosh_googleid"><?php _e( 'Sender ID', WpAppKitPushWhoosh::i18n_domain ) ?></label>
                     <input id="wpak_pushwoosh_googleid" type="text" name="wpak_app_options[pushwoosh][googleid]" value="<?php echo $options['pushwoosh']['googleid'] ?>" />
                     <span class="description"><?php // TODO: add a description here? _e( '', WpAppKitPushWhoosh::i18n_domain ) ?></span>
                 </div>
