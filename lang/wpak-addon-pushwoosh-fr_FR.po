@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP-AppKit PushWoosh Addon\n"
-"POT-Creation-Date: 2017-01-30 20:21+0100\n"
-"PO-Revision-Date: 2017-01-30 20:21+0100\n"
+"POT-Creation-Date: 2017-01-30 20:25+0100\n"
+"PO-Revision-Date: 2017-01-30 20:25+0100\n"
 "Last-Translator: Lionel Pointet <lionel.pointet@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -25,12 +25,15 @@ msgid "Help me"
 msgstr "Aidez-moi"
 
 #: ../wpak-pushwoosh-bo-settings.php:48
-msgid "PushWoosh ID"
-msgstr "ID PushWoosh"
+msgid "PushWoosh Application code"
+msgstr "PushWoosh Application code"
 
 #: ../wpak-pushwoosh-bo-settings.php:53
 msgid "Sender ID"
 msgstr "Sender ID"
+
+#~ msgid "PushWoosh ID"
+#~ msgstr "ID PushWoosh"
 
 #~ msgid "Google Project ID"
 #~ msgstr "Numéro de projet Google"

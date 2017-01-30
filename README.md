@@ -13,7 +13,7 @@ When logged in, you can manage your applications and the platforms each one is s
 
 Plus, you need to activate this addon for each WP-AppKit application that will use it, simply by checking the _WP AppKit PushWhoosh_ checkbox.
 
-Once you created your app both in PushWoosh and WP-AppKit, you need to put its **Application Code** into the _PushWoosh ID_ field from WP-AppKit screen.
+Once you created your app both in PushWoosh and WP-AppKit, you need to put its **Application Code** into the _PushWoosh Application code_ field from WP-AppKit screen.
 
 ![PushWoosh WP-AppKit addon metabox print screen](http://uncatcrea.github.io/wpak-addon-pushwoosh/addon_metabox.png)
 
@@ -34,7 +34,7 @@ What you’ll need regarding this addon is to write down your Google Application
 * Paste Firebase's Server Key to API Key field in the Android notifications PushWoosh panel
 * Paste Firebase Sender ID to the GCM Sender ID in the Android notifications PushWoosh panel
 * Choose _Cordova_ as framework
-* Paste PushWoosh Application code in the **PushWoosh ID field in WP-AppKit** addon metabox
+* Paste PushWoosh Application code in the **PushWoosh Application code field in WP-AppKit** addon metabox
 
 ### iOS
 You need to register your app in your Apple Developer account. The global configuration between Apple and PushWoosh is detailed here (Mac OSX only): http://docs.pushwoosh.com/docs/apns-configuration
