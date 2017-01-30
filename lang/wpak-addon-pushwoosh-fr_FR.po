@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP-AppKit PushWoosh Addon\n"
-"POT-Creation-Date: 2017-01-30 20:25+0100\n"
-"PO-Revision-Date: 2017-01-30 20:25+0100\n"
+"POT-Creation-Date: 2017-01-30 21:22+0100\n"
+"PO-Revision-Date: 2017-01-30 21:24+0100\n"
 "Last-Translator: Lionel Pointet <lionel.pointet@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -28,9 +28,28 @@ msgstr "Aidez-moi"
 msgid "PushWoosh Application code"
 msgstr "PushWoosh Application code"
 
+#: ../wpak-pushwoosh-bo-settings.php:50
+msgid ""
+"Provided in the PushWoosh interface: open your app and it is right under the "
+"app's name"
+msgstr ""
+"Disponible depuis l'interface PushWoosh : ouvrez votre application et c'est "
+"juste en dessous du nom de l'application"
+
 #: ../wpak-pushwoosh-bo-settings.php:53
 msgid "Sender ID"
 msgstr "Sender ID"
+
+#: ../wpak-pushwoosh-bo-settings.php:55
+msgid ""
+"Provided in the Firebase console: open your project, click the gear icon in "
+"the left menu to access parameters and open the Cloud Messaging tab to find "
+"your Sender ID"
+msgstr ""
+"Disponible depuis la console Firebase : ouvrez votre projet, cliquez sur "
+"l'icône en forme de roue dentée dans le menu de gauche pour accéder aux "
+"paramètres et ouvrez l'onglet \"Cloud Messaging\" pour trouver votre Sender "
+"ID"
 
 #~ msgid "PushWoosh ID"
 #~ msgstr "ID PushWoosh"
