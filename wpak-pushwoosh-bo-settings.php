@@ -49,7 +49,7 @@ if ( !class_exists( 'WpakPushWooshAdmin' ) ) {
                     <input id="wpak_pushwoosh_pwid" type="text" name="wpak_app_options[pushwoosh][pwid]" value="<?php echo $options['pushwoosh']['pwid'] ?>" />
                     <span class="description"><?php // TODO: add a description here? _e( '', WpAppKitPushWhoosh::i18n_domain ) ?></span>
                 </div>
-                <div class="field-group">
+                <div class="field-group platform-specific android">
                     <label for="wpak_pushwoosh_googleid"><?php _e( 'Sender ID', WpAppKitPushWhoosh::i18n_domain ) ?></label>
                     <input id="wpak_pushwoosh_googleid" type="text" name="wpak_app_options[pushwoosh][googleid]" value="<?php echo $options['pushwoosh']['googleid'] ?>" />
                     <span class="description"><?php // TODO: add a description here? _e( '', WpAppKitPushWhoosh::i18n_domain ) ?></span>
