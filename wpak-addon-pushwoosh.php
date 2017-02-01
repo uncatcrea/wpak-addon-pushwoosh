@@ -2,7 +2,7 @@
 /*
   Plugin Name: WP AppKit PushWhoosh Addon
   Description: Send push notifications to your WP-AppKit generated apps through PushWoosh service
-  Version: 0.1
+  Version: 1.0.0
  */
 
 if ( !class_exists( 'WpAppKitPushWhoosh' ) ) {
