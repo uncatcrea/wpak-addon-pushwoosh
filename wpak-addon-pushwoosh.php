@@ -1,16 +1,16 @@
 <?php
 /*
-  Plugin Name: WP AppKit PushWhoosh Addon
+  Plugin Name: WP-AppKit PushWoosh Addon
   Description: Send push notifications to your WP-AppKit generated apps through PushWoosh service
-  Version: 1.0.0
+  Version: 1.0.1
  */
 
-if ( !class_exists( 'WpAppKitPushWhoosh' ) ) {
+if ( !class_exists( 'WpAppKitPushWoosh' ) ) {
 
     /**
      * PushWoosh addon main manager class.
      */
-    class WpAppKitPushWhoosh {
+    class WpAppKitPushWoosh {
 
         const slug = 'wpak-addon-pushwoosh';
         const i18n_domain = 'wpak-addon-pushwoosh';
@@ -104,7 +104,7 @@ if ( !class_exists( 'WpAppKitPushWhoosh' ) ) {
             $licenses[] = array(
                 'file' => __FILE__,
                 'item_name' => 'WP-AppKit Pushwoosh Addon',
-                'version' => '1.0.0',
+                'version' => '1.0.1',
                 'author' => 'Uncategorized Creations',
             );
             return $licenses;
@@ -112,5 +112,5 @@ if ( !class_exists( 'WpAppKitPushWhoosh' ) ) {
 
     }
 
-    WpAppKitPushWhoosh::hooks();
+    WpAppKitPushWoosh::hooks();
 }
