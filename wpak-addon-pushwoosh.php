@@ -74,10 +74,10 @@ if ( !class_exists( 'WpAppKitPushWoosh' ) ) {
                     //
 
                     case 'phonegap-build':
-                        $default_plugins['pushwoosh-pgb-plugin'] = array( 'spec' => '6.3.2', 'source' => 'npm' );
+                        $default_plugins['pushwoosh-pgb-plugin'] = array( 'spec' => '6.5.3', 'source' => 'npm' );
                         break;
                     default:
-                        $default_plugins['pushwoosh-cordova-plugin'] = array( 'spec' => '6.3.2', 'source' => 'npm' );
+                        $default_plugins['pushwoosh-cordova-plugin'] = array( 'spec' => '6.5.3', 'source' => 'npm' );
                         break;
                 }
             }
