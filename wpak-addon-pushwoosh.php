@@ -103,7 +103,7 @@ if ( !class_exists( 'WpAppKitPushWoosh' ) ) {
         public static function add_license( $licenses ) {
             $licenses[] = array(
                 'file' => __FILE__,
-                'item_name' => 'WP-AppKit Pushwoosh Addon',
+                'item_name' => 'Pushwoosh for WP-AppKit',
                 'version' => '1.0.1',
                 'author' => 'Uncategorized Creations',
             );
