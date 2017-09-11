@@ -1,97 +1,25 @@
-# PushWoosh Addon for WP-AppKit
-Addon to manage PushWoosh notifications with WP-AppKit.  
-This addon currently supports and is tested with iOS and Android only.
+# Pushwoosh for WP-AppKit
+Pushwoosh for WP-AppKit is an add-on that extends the WP-AppKit plugin to let you use Pushwoosh with your apps.
 
-## HOW TO SETUP
-First things first, this addon only works with PushWoosh: https://www.pushwoosh.com/  
-You can see its documentation here for more details and features: https://cp.pushwoosh.com/v2/docs
+Pushwoosh for WP-AppKit comes with the following features:
+* Subscribe users to notifications on iOS and Android
+* Send notifications to iOS and Android users using the PushWoosh platform
+* Deeplink support (ie. open an article with a notification)
 
-To start with setuping push notifications within your WP-AppKit app, you need a PushWoosh account.  
-When logged in, you can manage your applications and the platforms each one is supporting through your PushWoosh dashboard.
+This add-on currently supports and is tested with iOS and Android only.
 
-![PushWoosh print screen](http://uncatcrea.github.io/wpak-addon-pushwoosh/printscreen.png)
+# Where To Buy?
+You can buy Pushwoosh for WP-AppKit directly on [our website](https://uncategorized-creations.com/?edd_action=add_to_cart&download_id=3923).
 
-Plus, you need to activate this addon for each WP-AppKit application that will use it, simply by checking the _WP AppKit PushWhoosh_ checkbox.
+As for all our other add-ons, buying Pushwoosh for WP-AppKit will make you benefit from a year of support and updates.
 
-Once you created your app both in PushWoosh and WP-AppKit, you need to put its **Application Code** into the _PushWoosh Application code_ field from WP-AppKit screen.
+# Is There A Documentation?
+Of course there is, and it's publicly available. You can check it out [here](https://uncategorized-creations.com/wp-appkit/doc/addons/pushwoosh/).
 
-![PushWoosh WP-AppKit addon metabox print screen](http://uncatcrea.github.io/wpak-addon-pushwoosh/addon_metabox.png)
+# Changelog
+## 1.0.1
+* Add license
+* Fix typos
 
-### Android
-You need to register your app (create a _project_) in your Google Developers account. The global configuration between Google and PushWoosh is detailed here: http://docs.pushwoosh.com/docs/fcm-configuration
-
-What you’ll need regarding this addon is to write down your Google Application **Project Number** and put it into the _Sender ID_ field from WP-AppKit screen.
-
-#### Firebase
-* Use Firebase (FCM) instead of GCM
-* Access you app's project
-* Click the parameter gear icon (right to the overview item in the left menu)
-* Open Cloud Messaging tab
-* Paste Firebase Sender ID in the **Sender ID field in WP-AppKit** addon metabox
-
-#### PushWoosh
-* Copy Firebase's Server Key (from Cloud Messaging tab)
-* Paste Firebase's Server Key to API Key field in the Android notifications PushWoosh panel
-* Paste Firebase Sender ID to the GCM Sender ID in the Android notifications PushWoosh panel
-* Choose _Cordova_ as framework
-* Paste PushWoosh Application code in the **PushWoosh Application code field in WP-AppKit** addon metabox
-
-### iOS
-You need to register your app in your Apple Developer account. The global configuration between Apple and PushWoosh is detailed here (Mac OSX only): http://docs.pushwoosh.com/docs/apns-configuration
-
-If you want to create the needed certificates from Windows, you’ll find some help below. You’ll first need the openssl command line, for example by downloading OpenSSL binaries (https://www.openssl.org/community/binaries.html), or any tool that will bring you UNIX CLI commands (Cygwin, Git bash for Windows, etc.).
-
-#### Apple Developer Console
-* Access Certificates, IDs & Profiles item in the left menu
-* **Everything has to be done with production certificates**
-* Create an iOS Distribution Certificate (using your signing request and choosing App Store/Ad Hoc)
-* Download the .cer file
-* Create an App ID
-* Be sure to give the same bundle ID you use to compile with PhoneGap Build (you'll find it in the config.xml)
-* Check Push Notifications
-* Add a Production SSL Certificate for push notifications (using the same signing request you've used for the production certificate above)
-* Register as many as devices you need (collecting UDID with iTunes)
-* Create a distribution provisioning file using your App ID, your production certificate, selecting the devices -> be sure to select Ad Hoc
-
-#### PhoneGap Build
-* Convert your .cer certificate (see above) into a .p12 file
-* Edit Account
-* Open Signing Keys tab
-* 
-
-#### PushWoosh
-
-#### Generate a certificate request
-Execute these commands:
-
-    openssl genrsa -out mykey.key 2048
-    openssl req -new -key mykey.key -out CertificateSigningRequest.certSigningRequest  -subj "/emailAddress=yourAddress@example.com, CN=John Doe, C=US"
-
-#### Convert .cer file to .p12 (export certificate)
-Execute these commands:
-
-    openssl x509 -in apple_certificate.cer -inform DER -out apple_certificate.pem -outform PEM
-    openssl pkcs12 -export -inkey mykey.key -in apple_certificate.pem -out exported_certificate.p12
-
-Then, enter the password. You’ll need to enter it in PushWoosh configuration later.
-
-One thing you need to understand here is that these certificates are only useful for PushWoosh to communicate with Apple servers, you’ll then need to get different certificates to be able to build and deploy your application.
-
-_Sources for certificates generation with Windows:_
-* _http://help.adobe.com/en_US/as3/iphone/WS144092a96ffef7cc-371badff126abc17b1f-8000.html_
-* _http://help.adobe.com/en_US/as3/iphone/WS144092a96ffef7cc-371badff126abc17b1f-7fff.html_
-
-_Useful link (in French):_ https://blog.didierstevens.com/2015/03/30/howto-make-your-own-cert-with-openssl-on-windows/ 
-
-## DEEP LINKS
-Since WP-AppKit natively supports Deep Linking (as of v0.5), this addon just adds the ability to use it from notifications.
-
-Deep Linking is a feature letting you open a specific screen of your app thanks to a single external link. This is especially useful when you are sending push notifications to your users and you want them to see a specific landing page when clicking on the notification.
-
-This addon lets you achieve this goal, with one condition though: you must be able to send _Custom Data_ thanks to PushWoosh, meaning that you have at least a **Premium** account.
-
-To use this feature, add the route you want the app to follow when the user clicks on the notification into the PushWoosh _Pass additional Custom Data to the app_ field, with the following format:  
-`{ route: "[route]" }`
-
-For example, to open the page with ID 1, included into the "all-pages" component, type in the following value:  
-`{ route: "/page/all-pages/1" }`
+## 1.0.0
+* Initial version
