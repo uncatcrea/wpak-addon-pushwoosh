@@ -1,16 +1,16 @@
 <?php
 /*
-  Plugin Name: WP-AppKit PushWoosh Addon
-  Description: Send push notifications to your WP-AppKit generated apps through PushWoosh service
+  Plugin Name: Pushwoosh for WP-AppKit
+  Description: Send push notifications to your WP-AppKit generated apps through Pushwoosh service
   Version: 1.0.1
  */
 
-if ( !class_exists( 'WpAppKitPushWoosh' ) ) {
+if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
 
     /**
-     * PushWoosh addon main manager class.
+     * Pushwoosh addon main manager class.
      */
-    class WpAppKitPushWoosh {
+    class WpAppKitPushwoosh {
 
         const slug = 'wpak-addon-pushwoosh';
         const i18n_domain = 'wpak-addon-pushwoosh';
@@ -34,7 +34,7 @@ if ( !class_exists( 'WpAppKitPushWoosh' ) ) {
          *
          * @param array             $addons            Available addons.
          *
-         * @return array            $addons            Addons with PushWoosh (this one).
+         * @return array            $addons            Addons with Pushwoosh (this one).
          */
         public static function wpak_addons( $addons ) {
             $addon = new WpakAddon( 'WP AppKit PushWhoosh', self::slug );
@@ -60,7 +60,7 @@ if ( !class_exists( 'WpAppKitPushWoosh' ) ) {
          * @param string            $export_type                Export type : 'phonegap-build' or 'phonegap-cli'
          * @param int               $app_id                     The App ID.
          *
-         * @return array            $default_plugins            Plugins with PushWoosh one in addition.
+         * @return array            $default_plugins            Plugins with Pushwoosh one in addition.
          */
         public static function wpak_default_phonegap_build_plugins( $default_plugins, $export_type, $app_id ) {
             if( WpakAddons::addon_activated_for_app( self::slug, $app_id ) ) {
@@ -93,10 +93,10 @@ if ( !class_exists( 'WpAppKitPushWoosh' ) ) {
         public static function plugins_loaded() {
             load_plugin_textdomain( self::i18n_domain, false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
         }
-        
+
         /**
          * Register license management for this addon.
-         * 
+         *
          * @param array $licenses Licenses array given by WP-AppKit's core.
          * @return array
          */
@@ -112,5 +112,5 @@ if ( !class_exists( 'WpAppKitPushWoosh' ) ) {
 
     }
 
-    WpAppKitPushWoosh::hooks();
+    WpAppKitPushwoosh::hooks();
 }
