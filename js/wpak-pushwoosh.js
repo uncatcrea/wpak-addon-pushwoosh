@@ -47,7 +47,7 @@ define( function( require ) {
          * "wpak-pushwoosh-notification" filter: use this filter to display a push notification content as soon as the user clicked on it to open the app.
          *
          * @param {string} title: The content of the notification
-         * @param {JSON Object} userData: A JSON object (can be empty) containing custom additional data provided from PushWoosh interface
+         * @param {JSON Object} userData: A JSON object (can be empty) containing custom additional data provided from Pushwoosh interface
          * @param {Object} notification: Original notification event object
          */
         Hooks.applyFilters( 'wpak-pushwoosh-notification', title, [userData, notification] );
