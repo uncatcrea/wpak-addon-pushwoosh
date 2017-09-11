@@ -17,6 +17,11 @@ As for all our other add-ons, buying Pushwoosh for WP-AppKit will make you benef
 Of course there is, and it's publicly available. You can check it out [here](https://uncategorized-creations.com/wp-appkit/doc/addons/pushwoosh/).
 
 # Changelog
+## 1.0.2
+* Consistency with Pushwoosh service: there is no uppercase 'W'
+* Update readme with useful links and changelog
+* Update POT file and French translation
+
 ## 1.0.1
 * Add license
 * Fix typos

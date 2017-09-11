@@ -1,8 +1,8 @@
 <?php
 /*
   Plugin Name: Pushwoosh for WP-AppKit
-  Description: Send push notifications to your WP-AppKit generated apps through Pushwoosh service
-  Version: 1.0.1
+  Description: Subscribe users and send notifications without pain
+  Version: 1.0.2
  */
 
 if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
@@ -104,7 +104,7 @@ if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
             $licenses[] = array(
                 'file' => __FILE__,
                 'item_name' => 'Pushwoosh for WP-AppKit',
-                'version' => '1.0.1',
+                'version' => '1.0.2',
                 'author' => 'Uncategorized Creations',
             );
             return $licenses;
