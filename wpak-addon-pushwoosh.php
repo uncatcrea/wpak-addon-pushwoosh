@@ -2,7 +2,7 @@
 /*
   Plugin Name: Pushwoosh for WP-AppKit
   Description: Subscribe users and send notifications without pain
-  Version: 1.0.2
+  Version: 1.0.3
  */
 
 if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
@@ -12,6 +12,7 @@ if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
      */
     class WpAppKitPushwoosh {
 
+    	const name = 'Pushwoosh for WP-AppKit';
         const slug = 'wpak-addon-pushwoosh';
         const i18n_domain = 'wpak-addon-pushwoosh';
 
@@ -37,7 +38,7 @@ if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
          * @return array            $addons            Addons with Pushwoosh (this one).
          */
         public static function wpak_addons( $addons ) {
-            $addon = new WpakAddon( 'WP AppKit PushWhoosh', self::slug );
+            $addon = new WpakAddon( self::name, self::slug );
 
             $addon->set_location( __FILE__ );
 
@@ -103,8 +104,8 @@ if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
         public static function add_license( $licenses ) {
             $licenses[] = array(
                 'file' => __FILE__,
-                'item_name' => 'Pushwoosh for WP-AppKit',
-                'version' => '1.0.2',
+                'item_name' => self::name,
+                'version' => '1.0.3',
                 'author' => 'Uncategorized Creations',
             );
             return $licenses;
