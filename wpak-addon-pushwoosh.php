@@ -65,6 +65,18 @@ if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
          */
         public static function wpak_default_phonegap_build_plugins( $default_plugins, $export_type, $app_id ) {
             if( WpakAddons::addon_activated_for_app( self::slug, $app_id ) ) {
+            	// Ensure pushes received when the app is in foreground are shown
+            	$params = array(
+            		array(
+            			'name' => 'ANDROID_FOREGROUND_PUSH',
+			            'value' => 'true',
+		            ),
+            		array(
+            			'name' => 'IOS_FOREGROUND_ALERT_TYPE',
+			            'value' => 'ALERT',
+		            ),
+	            );
+
                 switch( $export_type ) {
                     //
                     // Due to PhoneGap Build being really long to update their Google Play libraries
@@ -75,10 +87,10 @@ if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
                     //
 
                     case 'phonegap-build':
-                        $default_plugins['pushwoosh-pgb-plugin'] = array( 'spec' => '6.5.3', 'source' => 'npm' );
+                        $default_plugins['pushwoosh-pgb-plugin'] = array( 'spec' => '7.8.6', 'source' => 'npm', 'params' => $params );
                         break;
                     default:
-                        $default_plugins['pushwoosh-cordova-plugin'] = array( 'spec' => '6.5.3', 'source' => 'npm' );
+                        $default_plugins['pushwoosh-cordova-plugin'] = array( 'spec' => '7.8.6', 'source' => 'npm', 'params' => $params );
                         break;
                 }
             }

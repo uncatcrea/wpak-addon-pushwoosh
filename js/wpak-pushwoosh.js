@@ -18,8 +18,8 @@ define( function( require ) {
         //set push notifications handler
         document.addEventListener( 'push-notification', pushwoosh.handleNotif );
 
-        //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
-        pushNotification.onDeviceReady( { projectid: Config.options.pushwoosh.googleid, pw_appid : Config.options.pushwoosh.pwid } );
+        //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
+        pushNotification.onDeviceReady( { projectid: Config.options.pushwoosh.googleid, appid : Config.options.pushwoosh.pwid } );
 
         //register for pushes
         pushNotification.registerDevice();
@@ -30,7 +30,7 @@ define( function( require ) {
 
     pushwoosh.handleNotif = function( event ) {
         var notification = event.notification,
-            title = notification.title || notification.aps.alert,
+            title = notification.message || notification.title || notification.aps.alert,
             userData = notification.userdata || notification.u;
 
         //clear the app badge (iOS only)
