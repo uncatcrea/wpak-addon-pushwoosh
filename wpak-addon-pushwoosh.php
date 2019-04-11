@@ -24,6 +24,9 @@ if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
         public static function hooks() {
             add_filter( 'wpak_addons', array( __CLASS__, 'wpak_addons' ) );
             add_filter( 'wpak_default_phonegap_build_plugins', array( __CLASS__, 'wpak_default_phonegap_build_plugins' ), 10, 3 );
+            add_filter( 'wpak_app_platform_attributes', array( __CLASS__, 'wpak_app_platform_attributes' ), 10, 2 );
+            add_filter( 'wpak_app_phonegap_version', array( __CLASS__, 'wpak_app_phonegap_version' ), 10, 2 );
+            add_filter( 'wpak_export_custom_files', array( __CLASS__, 'wpak_export_custom_files' ), 10, 3 );
             add_action( 'plugins_loaded', array( __CLASS__, 'plugins_loaded' ) );
             add_filter( 'wpak_licenses', array( __CLASS__, 'add_license' ) );
         }
@@ -87,15 +90,75 @@ if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
                     //
 
                     case 'phonegap-build':
-                        $default_plugins['pushwoosh-pgb-plugin'] = array( 'spec' => '7.8.6', 'source' => 'npm', 'params' => $params );
+                        $default_plugins['pushwoosh-pgb-plugin'] = array( 'spec' => '7.2.5', 'source' => 'npm', 'params' => $params );
                         break;
                     default:
-                        $default_plugins['pushwoosh-cordova-plugin'] = array( 'spec' => '7.8.6', 'source' => 'npm', 'params' => $params );
+                        $default_plugins['pushwoosh-cordova-plugin'] = array( 'spec' => '7.2.5', 'source' => 'npm', 'params' => $params );
                         break;
                 }
             }
 
             return $default_plugins;
+        }
+
+        /**
+         * Attached to 'wpak_app_platform_attributes' hook.
+         *
+         * Add resource-file platform attribute to provide google-services.json file.
+         *
+         * @param string            $platform_attributes        The default platform attributes.
+         * @param int               $app_id                     The App ID.
+         *
+         * @return array            $platform_attributes        Modified platform attributes.
+         */
+        public static function wpak_app_platform_attributes( $platform_attributes, $app_id ) {
+            if ( WpakAddons::addon_activated_for_app( self::slug, $app_id ) ) {
+                $platform_attributes = "<resource-file src=\"google-services.json\" target=\"/google-services.json\" />\n";
+            }
+            return $platform_attributes;
+        }
+
+        /**
+         * Attached to 'wpak_app_phonegap_version' hook.
+         *
+         * Set phonegap version compatible with pushwoosh-pgb-plugin
+         *
+         * @param string            $phonegap_version        The default phonegap version.
+         * @param int               $app_id                  The App ID.
+         *
+         * @return array            $phonegap_version        Modified phonegap version.
+         */
+        public static function wpak_app_phonegap_version( $phonegap_version, $app_id ) {
+            if ( WpakAddons::addon_activated_for_app( self::slug, $app_id ) ) {
+                if ( empty( $phonegap_version ) ) {
+                    $phonegap_version = "cli-7.0.1";
+                }
+            }
+            return $phonegap_version;
+        }
+
+        /**
+         * Attached to 'wpak_export_custom_files' hook.
+         *
+         * Add google-services.json file to app export
+         *
+         * @param array             $custom_files            Custom files to add to export.
+         * @param string            $export_type             App export type.
+         * @param int               $app_id                  The App ID.
+         *
+         * @return array            $phonegap_version        Custom files with google-services.json added
+         */
+        public static function wpak_export_custom_files( $custom_files, $export_type, $app_id ) {
+            if ( WpakAddons::addon_activated_for_app( self::slug, $app_id ) ) {
+                $options = WpakOptions::get_app_options( $app_id );
+                if ( !empty( $options['pushwoosh']['google_services_json'] ) ) {
+                    $custom_files[] = [
+                        'name' => 'google-services.json',
+                        'content' => $options['pushwoosh']['google_services_json'],
+                    ];
+                }
+            }
+            return $custom_files;
         }
 
         /**

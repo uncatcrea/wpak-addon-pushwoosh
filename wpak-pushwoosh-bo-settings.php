@@ -58,6 +58,11 @@ if ( !class_exists( 'WpakPushwooshAdmin' ) ) {
                     <input id="wpak_pushwoosh_googleid" type="text" name="wpak_app_options[pushwoosh][googleid]" value="<?php echo $options['pushwoosh']['googleid'] ?>" />
                     <span class="description"><?php _e( 'Provided in the Firebase console: open your project, click the gear icon in the left menu to access parameters and open the Cloud Messaging tab to find your Sender ID', WpAppKitPushwoosh::i18n_domain ) ?></span>
                 </div>
+                <div class="field-group platform-specific android">
+                    <label for="wpak_pushwoosh_google_services_json"><?php _e( 'google-services.json', WpAppKitPushwoosh::i18n_domain ) ?></label>
+                    <textarea id="wpak_pushwoosh_google_services_json" name="wpak_app_options[pushwoosh][google_services_json]" style="height:10em"><?php echo $options['pushwoosh']['google_services_json'] ?></textarea>
+                    <span class="description"><?php _e( 'Provided in the Firebase console: open your project, click the gear icon in the left menu to access parameters, in General tab click the link to download the google-services.json file, then open this file and copy its content here', WpAppKitPushwoosh::i18n_domain ) ?></span>
+                </div>
             </div>
             <?php
         }
@@ -75,6 +80,7 @@ if ( !class_exists( 'WpakPushwooshAdmin' ) ) {
             $default['pushwoosh'] = array(
                 'pwid' => '',
                 'googleid' => '',
+                'google_services_json' => '',
             );
 
             return $default;
