@@ -2,7 +2,7 @@
 /*
   Plugin Name: Pushwoosh for WP-AppKit
   Description: Subscribe users and send notifications without pain
-  Version: 1.0.3
+  Version: 1.0.4
  */
 
 if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
@@ -180,7 +180,7 @@ if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
             $licenses[] = array(
                 'file' => __FILE__,
                 'item_name' => self::name,
-                'version' => '1.0.3',
+                'version' => '1.0.4',
                 'author' => 'Uncategorized Creations',
             );
             return $licenses;
