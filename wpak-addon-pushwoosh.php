@@ -98,7 +98,7 @@ if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
                 }
 
                 //cli-8.1.1 requires cordova-build-architecture 1.0.4
-                $default_plugins['cordova-build-architecture']['spec'] = '1.0.4';
+                $default_plugins['cordova-build-architecture']['spec'] = 'https://github.com/MBuchalik/cordova-build-architecture.git#v1.0.4';
             }
 
             return $default_plugins;
