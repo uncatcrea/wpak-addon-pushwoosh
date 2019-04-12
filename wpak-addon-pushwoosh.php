@@ -90,12 +90,15 @@ if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
                     //
 
                     case 'phonegap-build':
-                        $default_plugins['pushwoosh-pgb-plugin'] = array( 'spec' => '7.2.5', 'source' => 'npm', 'params' => $params );
+                        $default_plugins['pushwoosh-pgb-plugin'] = array( 'spec' => '7.13.0', 'source' => 'npm', 'params' => $params );
                         break;
                     default:
-                        $default_plugins['pushwoosh-cordova-plugin'] = array( 'spec' => '7.2.5', 'source' => 'npm', 'params' => $params );
+                        $default_plugins['pushwoosh-cordova-plugin'] = array( 'spec' => '7.13.0', 'source' => 'npm', 'params' => $params );
                         break;
                 }
+
+                //cli-8.1.1 requires cordova-build-architecture 1.0.4
+                $default_plugins['cordova-build-architecture']['spec'] = '1.0.4';
             }
 
             return $default_plugins;
@@ -113,7 +116,7 @@ if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
          */
         public static function wpak_app_platform_attributes( $platform_attributes, $app_id ) {
             if ( WpakAddons::addon_activated_for_app( self::slug, $app_id ) ) {
-                $platform_attributes = "<resource-file src=\"google-services.json\" target=\"/google-services.json\" />\n";
+                $platform_attributes = "<resource-file src=\"google-services.json\" target=\"/app/google-services.json\" />\n"; //target=\"/google-services.json\" with cli-7.0.1
             }
             return $platform_attributes;
         }
@@ -131,7 +134,7 @@ if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
         public static function wpak_app_phonegap_version( $phonegap_version, $app_id ) {
             if ( WpakAddons::addon_activated_for_app( self::slug, $app_id ) ) {
                 if ( empty( $phonegap_version ) ) {
-                    $phonegap_version = "cli-7.0.1";
+                    $phonegap_version = "cli-8.1.1"; //cli-7.0.1
                 }
             }
             return $phonegap_version;
