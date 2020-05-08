@@ -8,11 +8,6 @@ Pushwoosh for WP-AppKit comes with the following features:
 
 This add-on currently supports and is tested with iOS and Android only.
 
-# Where To Buy?
-You can buy Pushwoosh for WP-AppKit directly on [our website](https://uncategorized-creations.com/?edd_action=add_to_cart&download_id=3923).
-
-As for all our other add-ons, buying Pushwoosh for WP-AppKit will make you benefit from a year of support and updates.
-
 # Is There A Documentation?
 Of course there is, and it's publicly available. You can check it out [here](https://uncategorized-creations.com/wp-appkit/doc/addons/pushwoosh/).
 
