@@ -93,7 +93,7 @@ if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
                         $default_plugins['pushwoosh-pgb-plugin'] = array( 'spec' => '7.13.0', 'source' => 'npm', 'params' => $params );
                         break;
                     default:
-                        $default_plugins['pushwoosh-cordova-plugin'] = array( 'spec' => '7.13.0', 'source' => 'npm', 'params' => $params );
+                        $default_plugins['pushwoosh-cordova-plugin'] = array( 'spec' => '8.0.0', 'source' => 'npm', 'params' => $params );
                         break;
                 }
 

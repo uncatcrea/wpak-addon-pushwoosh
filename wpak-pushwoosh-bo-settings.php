@@ -55,12 +55,12 @@ if ( !class_exists( 'WpakPushwooshAdmin' ) ) {
                     <input id="wpak_pushwoosh_pwid" type="text" name="wpak_app_options[pushwoosh][pwid]" value="<?php echo $options['pushwoosh']['pwid'] ?>" />
                     <span class="description"><?php _e( 'Provided in the Pushwoosh interface: open your app and it is right under the app\'s name', WpAppKitPushwoosh::i18n_domain ) ?></span>
                 </div>
-                <div class="field-group platform-specific android">
+                <div class="field-group platform-specific android android-cordova android-voltbuilder">
                     <label for="wpak_pushwoosh_googleid"><?php _e( 'Sender ID', WpAppKitPushwoosh::i18n_domain ) ?></label>
                     <input id="wpak_pushwoosh_googleid" type="text" name="wpak_app_options[pushwoosh][googleid]" value="<?php echo $options['pushwoosh']['googleid'] ?>" />
                     <span class="description"><?php _e( 'Provided in the Firebase console: open your project, click the gear icon in the left menu to access parameters and open the Cloud Messaging tab to find your Sender ID', WpAppKitPushwoosh::i18n_domain ) ?></span>
                 </div>
-                <div class="field-group platform-specific android">
+                <div class="field-group platform-specific android android-cordova android-voltbuilder">
                     <label for="wpak_pushwoosh_google_services_json"><?php _e( 'google-services.json', WpAppKitPushwoosh::i18n_domain ) ?></label>
                     <textarea id="wpak_pushwoosh_google_services_json" name="wpak_app_options[pushwoosh][google_services_json]" style="height:10em"><?php echo $options['pushwoosh']['google_services_json'] ?></textarea>
                     <span class="description"><?php _e( 'Provided in the Firebase console: open your project, click the gear icon in the left menu to access parameters, in General tab click the link to download the google-services.json file, then open this file and copy its content here', WpAppKitPushwoosh::i18n_domain ) ?></span>
