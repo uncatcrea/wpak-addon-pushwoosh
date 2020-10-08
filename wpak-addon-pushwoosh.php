@@ -98,7 +98,7 @@ if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
                 }
 
                 //cli-8.1.1 requires cordova-build-architecture 1.0.4
-                $default_plugins['cordova-build-architecture']['spec'] = 'https://github.com/MBuchalik/cordova-build-architecture.git#v1.0.4';
+                //$default_plugins['cordova-build-architecture']['spec'] = 'https://github.com/MBuchalik/cordova-build-architecture.git#v1.0.4';
             }
 
             return $default_plugins;
@@ -134,7 +134,7 @@ if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
         public static function wpak_app_phonegap_version( $phonegap_version, $app_id ) {
             if ( WpakAddons::addon_activated_for_app( self::slug, $app_id ) ) {
                 if ( empty( $phonegap_version ) ) {
-                    $phonegap_version = "cli-8.1.1"; //cli-7.0.1
+                    //$phonegap_version = "cli-8.1.1"; //cli-7.0.1
                 }
             }
             return $phonegap_version;

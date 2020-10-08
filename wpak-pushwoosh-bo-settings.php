@@ -18,6 +18,8 @@ if ( !class_exists( 'WpakPushwooshAdmin' ) ) {
 	            add_action( 'postbox_classes_wpak_apps_wpak_pushwoosh_config', array( 'WpakApps', 'add_platform_specific_class' ) );
 	            add_action( 'postbox_classes_wpak_apps_wpak_pushwoosh_config', array( 'WpakApps', 'add_ios_class' ) );
 	            add_action( 'postbox_classes_wpak_apps_wpak_pushwoosh_config', array( 'WpakApps', 'add_android_class' ) );
+                add_action( 'postbox_classes_wpak_apps_wpak_pushwoosh_config', array( 'WpakApps', 'add_android_cordova_class' ) );
+                add_action( 'postbox_classes_wpak_apps_wpak_pushwoosh_config', array( 'WpakApps', 'add_android_voltbuilder_class' ) );
             }
         }
 
