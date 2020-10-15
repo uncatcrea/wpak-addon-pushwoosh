@@ -2,7 +2,7 @@
 /*
   Plugin Name: Pushwoosh for WP-AppKit
   Description: Subscribe users and send notifications without pain
-  Version: 1.0.3
+  Version: 1.0.4
  */
 
 if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
@@ -24,6 +24,9 @@ if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
         public static function hooks() {
             add_filter( 'wpak_addons', array( __CLASS__, 'wpak_addons' ) );
             add_filter( 'wpak_default_phonegap_build_plugins', array( __CLASS__, 'wpak_default_phonegap_build_plugins' ), 10, 3 );
+            add_filter( 'wpak_app_platform_attributes', array( __CLASS__, 'wpak_app_platform_attributes' ), 10, 2 );
+            add_filter( 'wpak_app_phonegap_version', array( __CLASS__, 'wpak_app_phonegap_version' ), 10, 2 );
+            add_filter( 'wpak_export_custom_files', array( __CLASS__, 'wpak_export_custom_files' ), 10, 3 );
             add_action( 'plugins_loaded', array( __CLASS__, 'plugins_loaded' ) );
             add_filter( 'wpak_licenses', array( __CLASS__, 'add_license' ) );
         }
@@ -65,6 +68,18 @@ if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
          */
         public static function wpak_default_phonegap_build_plugins( $default_plugins, $export_type, $app_id ) {
             if( WpakAddons::addon_activated_for_app( self::slug, $app_id ) ) {
+            	// Ensure pushes received when the app is in foreground are shown
+            	$params = array(
+            		array(
+            			'name' => 'ANDROID_FOREGROUND_PUSH',
+			            'value' => 'true',
+		            ),
+            		array(
+            			'name' => 'IOS_FOREGROUND_ALERT_TYPE',
+			            'value' => 'ALERT',
+		            ),
+	            );
+
                 switch( $export_type ) {
                     //
                     // Due to PhoneGap Build being really long to update their Google Play libraries
@@ -75,15 +90,85 @@ if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
                     //
 
                     case 'phonegap-build':
-                        $default_plugins['pushwoosh-pgb-plugin'] = array( 'spec' => '6.5.3', 'source' => 'npm' );
+                        $default_plugins['pushwoosh-pgb-plugin'] = array( 'spec' => '7.13.0', 'source' => 'npm', 'params' => $params );
                         break;
                     default:
-                        $default_plugins['pushwoosh-cordova-plugin'] = array( 'spec' => '6.5.3', 'source' => 'npm' );
+                        $default_plugins['pushwoosh-cordova-plugin'] = array( 'spec' => '7.18.11', 'source' => 'npm', 'params' => $params );
+                        //2020-10-15 - Set version 7.18.11 because with 8.0.0, we have strange error when building with Cordova
                         break;
                 }
+
+                //cli-8.1.1 requires cordova-build-architecture 1.0.4
+                //$default_plugins['cordova-build-architecture']['spec'] = 'https://github.com/MBuchalik/cordova-build-architecture.git#v1.0.4';
             }
 
             return $default_plugins;
+        }
+
+        /**
+         * Attached to 'wpak_app_platform_attributes' hook.
+         *
+         * Add resource-file platform attribute to provide google-services.json file.
+         *
+         * @param string            $platform_attributes        The default platform attributes.
+         * @param int               $app_id                     The App ID.
+         *
+         * @return array            $platform_attributes        Modified platform attributes.
+         */
+        public static function wpak_app_platform_attributes( $platform_attributes, $app_id ) {
+            if ( WpakAddons::addon_activated_for_app( self::slug, $app_id ) ) {
+                $platform_attributes = "<resource-file src=\"google-services.json\" target=\"/app/google-services.json\" />\n";
+                //target=\"/google-services.json\"
+                //target=\"/app/google-services.json\" with cli-8.1.1
+            }
+            return $platform_attributes;
+        }
+
+        /**
+         * Attached to 'wpak_app_phonegap_version' hook.
+         *
+         * Set phonegap version compatible with pushwoosh-pgb-plugin
+         *
+         * @param string            $phonegap_version        The default phonegap version.
+         * @param int               $app_id                  The App ID.
+         *
+         * @return array            $phonegap_version        Modified phonegap version.
+         */
+        public static function wpak_app_phonegap_version( $phonegap_version, $app_id ) {
+            if ( WpakAddons::addon_activated_for_app( self::slug, $app_id ) ) {
+                if ( empty( $phonegap_version ) ) {
+                    //$phonegap_version = "cli-8.1.1"; //cli-7.0.1 //Let user choose version in app's panel configuration
+                }
+            }
+            return $phonegap_version;
+        }
+
+        /**
+         * Attached to 'wpak_export_custom_files' hook.
+         *
+         * Add google-services.json file to app export
+         *
+         * @param array             $custom_files            Custom files to add to export.
+         * @param string            $export_type             App export type.
+         * @param int               $app_id                  The App ID.
+         *
+         * @return array            $phonegap_version        Custom files with google-services.json added
+         */
+        public static function wpak_export_custom_files( $custom_files, $export_type, $app_id ) {
+            if ( WpakAddons::addon_activated_for_app( self::slug, $app_id ) ) {
+                $options = WpakOptions::get_app_options( $app_id );
+                if ( !empty( $options['pushwoosh']['google_services_json'] ) ) {
+                    $custom_file = [
+                        'name' => 'google-services.json',
+                        'content' => $options['pushwoosh']['google_services_json'],
+                    ];
+                    if ( $export_type === 'cordova-template' ) {
+                        $custom_file['root'] = 'template_src';
+                    }
+                    $custom_files[] = $custom_file;
+                }
+            }
+            return $custom_files;
         }
 
         /**
@@ -105,7 +190,7 @@ if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
             $licenses[] = array(
                 'file' => __FILE__,
                 'item_name' => self::name,
-                'version' => '1.0.3',
+                'version' => '1.0.4',
                 'author' => 'Uncategorized Creations',
             );
             return $licenses;
