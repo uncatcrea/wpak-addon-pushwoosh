@@ -93,7 +93,8 @@ if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
                         $default_plugins['pushwoosh-pgb-plugin'] = array( 'spec' => '7.13.0', 'source' => 'npm', 'params' => $params );
                         break;
                     default:
-                        $default_plugins['pushwoosh-cordova-plugin'] = array( 'spec' => '8.0.0', 'source' => 'npm', 'params' => $params );
+                        $default_plugins['pushwoosh-cordova-plugin'] = array( 'spec' => '7.18.11', 'source' => 'npm', 'params' => $params );
+                        //2020-10-15 - Set version 7.18.11 because with 8.0.0, we have strange error when building with Cordova
                         break;
                 }
 
@@ -116,7 +117,9 @@ if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
          */
         public static function wpak_app_platform_attributes( $platform_attributes, $app_id ) {
             if ( WpakAddons::addon_activated_for_app( self::slug, $app_id ) ) {
-                $platform_attributes = "<resource-file src=\"google-services.json\" target=\"/app/google-services.json\" />\n"; //target=\"/google-services.json\" with cli-7.0.1
+                $platform_attributes = "<resource-file src=\"google-services.json\" target=\"/app/google-services.json\" />\n";
+                //target=\"/google-services.json\"
+                //target=\"/app/google-services.json\" with cli-8.1.1
             }
             return $platform_attributes;
         }
@@ -134,7 +137,7 @@ if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
         public static function wpak_app_phonegap_version( $phonegap_version, $app_id ) {
             if ( WpakAddons::addon_activated_for_app( self::slug, $app_id ) ) {
                 if ( empty( $phonegap_version ) ) {
-                    //$phonegap_version = "cli-8.1.1"; //cli-7.0.1
+                    //$phonegap_version = "cli-8.1.1"; //cli-7.0.1 //Let user choose version in app's panel configuration
                 }
             }
             return $phonegap_version;
@@ -155,10 +158,14 @@ if ( !class_exists( 'WpAppKitPushwoosh' ) ) {
             if ( WpakAddons::addon_activated_for_app( self::slug, $app_id ) ) {
                 $options = WpakOptions::get_app_options( $app_id );
                 if ( !empty( $options['pushwoosh']['google_services_json'] ) ) {
-                    $custom_files[] = [
+                    $custom_file = [
                         'name' => 'google-services.json',
                         'content' => $options['pushwoosh']['google_services_json'],
                     ];
+                    if ( $export_type === 'cordova-template' ) {
+                        $custom_file['root'] = 'template_src';
+                    }
+                    $custom_files[] = $custom_file;
                 }
             }
             return $custom_files;
